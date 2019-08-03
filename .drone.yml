@@ -10,8 +10,8 @@ steps:
 - name: composer install post-script
   image: php:7
   commands:
-  - @php -r "file_exists('.env') || copy('.env.example', '.env');"
-  - @php artisan key:generate --ansi
+  - php -r "file_exists('.env') || copy('.env.example', '.env');"
+  - php artisan key:generate --ansi
 
 - name: test
   image: php:7

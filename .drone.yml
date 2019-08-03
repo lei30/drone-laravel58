@@ -7,10 +7,11 @@ steps:
   commands:
   - composer install
 
-- name: generate app key
+- name: composer install post-script
   image: php:7
   commands:
-  - php artisan key:generate
+  - @php -r "file_exists('.env') || copy('.env.example', '.env');"
+  - @php artisan key:generate --ansi
 
 - name: test
   image: php:7

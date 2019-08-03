@@ -1,0 +1,22 @@
+kind: pipeline
+name: default
+
+steps:
+- name: composer install
+  image: composer
+  commands:
+  - composer install
+
+- name: test
+  image: php:7
+  commands:
+  - vendor/bin/phpunit
+
+- name: frontend
+  image: node:8
+  commands:
+  - npm install
+  - npm audit fix
+  - npm run prod
+  - rm -rf node_module
+#publish:
